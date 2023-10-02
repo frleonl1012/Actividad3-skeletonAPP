@@ -1,0 +1,39 @@
+.animated-title {
+    animation-name: moveAndFade;
+    animation-duration: 3s; /* Duración total de la animación */
+  
+    animation-timing-function: ease-in-out; /* Función de temporización de la animación */
+    animation-direction: alternate; /* Cambiar la dirección de la animación de ida y vuelta */
+  
+    @keyframes moveAndFade {
+      0% {
+        transform: translateX(0); /* Inicio: centrado */
+        opacity: 1;
+      }
+      33% {
+        transform: translateX(50%); /* 25% de la animación: mover a la derecha */
+        opacity: 0;
+      }
+      66% {
+        transform: translateX(-50%); /* 75% de la animación: mover a la izquierda */
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0); /* Fin: volver al centro */
+        opacity: 1;
+      }
+    }
+  }
+
+  @keyframes slideRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .slide-right-animation {
+    animation: slideRight 1s ease-in-out;
+  }

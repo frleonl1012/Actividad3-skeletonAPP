@@ -5,7 +5,8 @@
       <ion-button fill="clear" slot="start" color="#f7f7f7">
         SKELETON
       </ion-button>
-      <ion-title>Inicio</ion-title>
+
+      <ion-title class="animated-title">Inicio</ion-title>
       
       <ion-button fill="clear"  (click)="logout()" slot="end" color="#ffffff">
         <ion-icon name="log-out-outline" color="tertiary"></ion-icon>
@@ -29,12 +30,12 @@
           <ion-card-subtitle>Información adicional</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          <form [formGroup]="formularioPerfil">
+          <form [formGroup]="formularioPerfil" >
             <ion-item>
-              <ion-input label="Nombre" formControlName="nombre" labelPlacement="stacked" ></ion-input>
+              <ion-input ng-class="Collapsable ? '' : 'slide-right-animation'" label="Nombre" formControlName="nombre" labelPlacement="stacked" #nombreInput ></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input label="Apellido" formControlName="apellido" labelPlacement="stacked" ></ion-input>
+              <ion-input label="Apellido" formControlName="apellido" labelPlacement="stacked" #apellidoInput></ion-input>
             </ion-item>
             <ion-item>
               <ion-select label="Nivel Educación" formControlName="nivelEducacion" label-placement="stacked">
@@ -45,19 +46,19 @@
               </ion-select>
             </ion-item>
             <ion-item>
-              <ion-input label="Fecha nacimiento" formControlName="fechaNacimiento" labelPlacement="stacked" type="date" ></ion-input>
+              <ion-input label="Fecha nacimiento" formControlName="fechaNacimiento" labelPlacement="stacked" type="date" #fechaNacimientoInput></ion-input>
             </ion-item>
           </form>
           <br>
           <ion-grid>
             <ion-row>
               <ion-col class="centrar-contenido">
-                  <ion-button [disabled]="!formularioPerfil.valid" shape="round" color="tertiary" (click)="mostrar()" >
+                  <ion-button [disabled]="!formularioPerfil.valid" shape="round" color="tertiary"  (click)="mostrar()" >
                     Mostrar
                   </ion-button>
               </ion-col>
               <ion-col class="centrar-contenido">
-                <ion-button shape="round" color="medium" (click)="limpiarCampos()" >
+                <ion-button ng-click="Collapsable = !Collapsable" shape="round" color="medium" (click)="limpiarCampos()" >
                   Limpiar
                 </ion-button>
               </ion-col>

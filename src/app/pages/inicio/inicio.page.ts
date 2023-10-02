@@ -8,6 +8,8 @@ import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
 
+
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
@@ -20,7 +22,8 @@ export class InicioPage implements OnInit {
   currentDate: Date;
   formularioPerfil: FormGroup;
 
-  constructor(private appComponent: AppComponent, private storage: Storage, private router: Router, public fb:FormBuilder, private modalController: ModalController, public alertController: AlertController) { 
+
+  constructor(private appComponent: AppComponent, private storage: Storage, private router: Router, public fb:FormBuilder, public alertController: AlertController) { 
     this.currentDate = new Date();
     this.message = 'Usuario'
     this.formularioPerfil = this.fb.group({
@@ -29,6 +32,7 @@ export class InicioPage implements OnInit {
       'nivelEducacion': new FormControl('', Validators.required),
       'fechaNacimiento': new FormControl('', Validators.required),
     })
+    
   }
   
 
@@ -70,8 +74,9 @@ export class InicioPage implements OnInit {
   }
 
   limpiarCampos() {
-    this.formularioPerfil.reset();
+    this.formularioPerfil.reset(); 
   }
+
 
 
 }
