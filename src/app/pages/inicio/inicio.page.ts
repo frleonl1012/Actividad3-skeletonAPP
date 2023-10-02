@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
@@ -6,8 +6,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ModalPerfilComponent } from '../../components/modal-perfil/modal-perfil.component'
 import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-
-
 
 
 @Component({
@@ -32,7 +30,7 @@ export class InicioPage implements OnInit {
       'nivelEducacion': new FormControl('', Validators.required),
       'fechaNacimiento': new FormControl('', Validators.required),
     })
-    
+
   }
   
 
@@ -73,7 +71,7 @@ export class InicioPage implements OnInit {
 
   }
 
-  limpiarCampos() {
+  async limpiarCampos() {
     this.formularioPerfil.reset(); 
   }
 
