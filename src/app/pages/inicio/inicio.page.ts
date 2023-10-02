@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalPerfilComponent } from '../../components/modal-perfil/modal-perfil.component'
 import { ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class InicioPage implements OnInit {
   currentDate: Date;
   formularioPerfil: FormGroup;
 
-  constructor(private appComponent: AppComponent, private storage: Storage, private router: Router, public fb:FormBuilder, private modalController: ModalController) { 
+  constructor(private appComponent: AppComponent, private storage: Storage, private router: Router, public fb:FormBuilder, private modalController: ModalController, public alertController: AlertController) { 
     this.currentDate = new Date();
     this.message = 'Usuario'
     this.formularioPerfil = this.fb.group({
@@ -57,11 +58,15 @@ export class InicioPage implements OnInit {
 
     await this.storage.set("perfil", perfil)
 
-    const modal = await this.modalController.create({
-      component: ModalPerfilComponent,
+    const alert = await this.alertController.create({
+      header: 'Información',
+      subHeader: 'Datos del formulario:',
+      message: `Nombre: ${perfil.nombre} - Apellido: ${perfil.apellido} - Nivel Educación: ${perfil.nivelEducacion} - Fecha nacimiento: ${perfil.fechaNacimiento}`,
+      buttons: ['Cerrar'],
     });
 
-    return await modal.present();
+    await alert.present();
+
   }
 
   limpiarCampos() {
