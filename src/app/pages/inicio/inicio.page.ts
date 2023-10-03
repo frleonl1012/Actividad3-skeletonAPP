@@ -1,11 +1,11 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2} from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModalPerfilComponent } from '../../components/modal-perfil/modal-perfil.component'
-import { ModalController } from '@ionic/angular';
+
 import { AlertController } from '@ionic/angular';
+import { AnimationController, Animation } from '@ionic/angular';
 
 
 @Component({
@@ -19,9 +19,9 @@ export class InicioPage implements OnInit {
   message: string;
   currentDate: Date;
   formularioPerfil: FormGroup;
+ 
 
-
-  constructor(private appComponent: AppComponent, private storage: Storage, private router: Router, public fb:FormBuilder, public alertController: AlertController) { 
+  constructor(private appComponent: AppComponent, private storage: Storage, private router: Router, public fb:FormBuilder, public alertController: AlertController, private animationCtrl: AnimationController, private el: ElementRef, private renderer: Renderer2) { 
     this.currentDate = new Date();
     this.message = 'Usuario'
     this.formularioPerfil = this.fb.group({
@@ -30,9 +30,10 @@ export class InicioPage implements OnInit {
       'nivelEducacion': new FormControl('', Validators.required),
       'fechaNacimiento': new FormControl('', Validators.required),
     })
-
+    
   }
-  
+
+
 
   ImagenLogo(): string {
     return this.appComponent.imgLogo;
@@ -41,7 +42,25 @@ export class InicioPage implements OnInit {
   async ngOnInit() {
     const value = await this.storage.get('login');
     this.message = `${value.usuario}`;
+
+    
   }
+
+  iniciarAnimacion() {
+    const ionItems = this.el.nativeElement.querySelectorAll('ion-item');
+    const animation = this.animationCtrl.create()
+      .addElement(ionItems) 
+      .fill('none')
+      .duration(1000)
+      .keyframes([
+        { offset: 0, transform: 'scale(1)', opacity: '0.5' },
+        { offset: 0.5, transform: 'scale(0.8)', opacity: '1' },
+        { offset: 1, transform: 'scale(1)', opacity: '0.5' },
+      ]);
+
+    animation.play();
+  }
+
 
   async logout(){
     await this.storage.clear();
@@ -73,6 +92,7 @@ export class InicioPage implements OnInit {
 
   async limpiarCampos() {
     this.formularioPerfil.reset(); 
+    await this.iniciarAnimacion();
   }
 
 

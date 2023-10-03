@@ -32,7 +32,7 @@
         <ion-card-content>
           <form [formGroup]="formularioPerfil" >
             <ion-item>
-              <ion-input ng-class="Collapsable ? '' : 'slide-right-animation'" label="Nombre" formControlName="nombre" labelPlacement="stacked" #nombreInput ></ion-input>
+              <ion-input label="Nombre" formControlName="nombre" labelPlacement="stacked" #nombreInput id="nombreInput" ></ion-input>
             </ion-item>
             <ion-item>
               <ion-input label="Apellido" formControlName="apellido" labelPlacement="stacked" #apellidoInput></ion-input>

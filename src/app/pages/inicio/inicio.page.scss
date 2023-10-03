@@ -25,15 +25,7 @@
     }
   }
 
-  @keyframes slideRight {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-  
-  .slide-right-animation {
-    animation: slideRight 1s ease-in-out;
+  ion-input {
+    transform-origin: center;
+    will-change: transform;
   }
